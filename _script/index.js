@@ -70,13 +70,13 @@ config.app.ctrl = []; config.app.routes.forEach(function(c){
 });
 
 // MODULES
-config.app.mod = []; config.app.modules.forEach(function(m){
-    config.app.mod.push(config.app.routes_base.mod + m);
+config.app.modules_routes = []; config.app.modules.forEach(function(m){
+    config.app.modules_routes.push(config.app.routes_base.mod + m);
 });
 
 // JAVASCRIPT
-config.app.js_cstm = []; config.app.js.forEach(function(s){
-    config.app.js_cstm.push(config.app.routes_base.js + s);
+config.app.js_routes = []; config.app.js.forEach(function(s){
+    config.app.js_routes.push(config.app.routes_base.js + s);
 });
 
 var paths = {}, shim = {}, deps = [config.app.name]; config.app.lib.forEach(function(l){
@@ -86,10 +86,12 @@ var paths = {}, shim = {}, deps = [config.app.name]; config.app.lib.forEach(func
         deps.push(l.name);
         if(l.deps){
             l.deps.forEach(function(d){
-                paths[d.name] = (config.app.production && d.local_url) ? d.local_url : d.url;
-                deps.push(d.name);
-                if(d.module){
-                    config.app.modules.push(d.module);
+                if(d.boot){
+                    paths[d.name] = (config.app.production && d.local_url) ? d.local_url : d.url;
+                    deps.push(d.name);
+                    if(d.module){
+                        config.app.modules.push(d.module);
+                    }
                 }
             });
             l.deps.forEach(function(d){
@@ -107,7 +109,7 @@ require.config({
 
 require(deps, function() {
     $(function() {
-        require(config.app.ctrl.concat(config.app.js_cstm), function () {
+        require(config.app.ctrl.concat(config.app.js_routes), function () {
             angular.bootstrap(document, [config.app.name]);
         });
     });

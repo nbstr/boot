@@ -1,6 +1,6 @@
 'use strict';
 
-define(['angular'].concat(config.app.mod), function () {
+define(['angular'].concat(config.app.modules_routes), function () {
 
     var app = angular.module(config.app.name, config.app.modules), $routeProviderReference;
 

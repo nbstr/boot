@@ -4,10 +4,8 @@ var config = {};
 
 // SETTINGS
 config.app = {
-	name:"app",
-    production:false,
-    root:'',
-    modules: ['Directives', 'Rootscope', 'Modules']
+    name:'app',
+    production:false
 };
 
 // ENVIRONMENTS
@@ -25,25 +23,16 @@ config.app.environments = {
 };
 
 // ROUTES
-config.app.routes_base = {
-    assets: config.app.root + '_assets/',
-    css: config.app.root + '_css/',
-    html: config.app.root + '_html/',
-    scripts: config.app.root + '_script/',
-    ctrl: config.app.root + 'ctrl/',
-    mod: config.app.root + 'mod/',
-    js: config.app.root + 'js/'
-};
 config.app.routes = [
-	{
-        'name':'Home',
-        'route':'/',
-        'templateUrl':'_html/Home.html',
-        'controllerUrl':'_script/ctrl/HomeCtrl.js',
-        'controller':'HomeCtrl',
-        'default':true
+    {
+        name:'Home',
+        route:'/',
+        default:true
     }
 ];
+
+// MODULES
+config.app.modules = ['AngularEnhanced', 'Directives', 'Rootscope', 'Modules', 'Models'];
 
 // JS FILES
 config.app.js = ['prototype', 'functions'];
@@ -59,18 +48,27 @@ config.app.lib = [
         deps:[
             {
                 name:'jQueryUI',
+                boot:true,
                 url:'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min',
                 local_url:''
             },
             {
                 name:'jQueryNiceScroll',
+                boot:true,
                 url:'https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.5.1/jquery.nicescroll.min',
                 local_url:''
             },
             {
                 name:'jsplumb',
+                boot:true,
                 url:'lib/jsplumb',
                 local_url:'lib/jsplumb'
+            },
+            {
+                name:'offline',
+                boot:false,
+                url:'lib/offline.min',
+                local_url:'lib/offline.min'
             }
         ]
     },
@@ -83,20 +81,35 @@ config.app.lib = [
         deps:[
             {
                 name:'angular-route',
+                boot:true,
                 url:'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min',
                 local_url:'',
                 module:'ngRoute'
             },
             {
                 name:'angular-resource',
+                boot:true,
                 url:'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min',
                 local_url:''
             },
             {
                 name:'angular-animate',
+                boot:true,
                 url:'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-animate.min',
                 local_url:''
             }
         ]
     }
 ];
+
+// ROUTES BASE
+config.app.root = '';
+config.app.routes_base = {
+    assets: config.app.root + '_assets/',
+    css: config.app.root + '_css/',
+    html: config.app.root + '_html/',
+    scripts: config.app.root + '_script/',
+    ctrl: config.app.root + 'ctrl/',
+    mod: config.app.root + 'mod/',
+    js: config.app.root + 'js/'
+};
