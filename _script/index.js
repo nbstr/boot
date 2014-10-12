@@ -64,14 +64,17 @@ else{
 |
 \*----------------------------------------------------------------------------------*/
 
+// CONTROLLERS
 config.app.ctrl = []; config.app.routes.forEach(function(c){
-    config.app.ctrl.push(config.app.routes_base.ctrl + c.controller);
+    config.app.ctrl.push(config.app.routes_base.ctrl + ((c.controller) ? c.controller : c.name + 'Ctrl'));
 });
 
+// MODULES
 config.app.mod = []; config.app.modules.forEach(function(m){
     config.app.mod.push(config.app.routes_base.mod + m);
 });
 
+// JAVASCRIPT
 config.app.js_cstm = []; config.app.js.forEach(function(s){
     config.app.js_cstm.push(config.app.routes_base.js + s);
 });

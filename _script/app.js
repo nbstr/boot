@@ -22,8 +22,8 @@ define(['angular'].concat(config.app.mod), function () {
                     currentRoute = config.app.routes[j];
 
                     $routeProviderReference.when(currentRoute.route, {
-                        templateUrl: currentRoute.templateUrl,
-                        controller: currentRoute.controller,
+                        templateUrl: (currentRoute.templateUrl) ? currentRoute.templateUrl : config.app.routes_base.html + currentRoute.name + '.html',
+                        controller: (currentRoute.controller) ? currentRoute.controller : currentRoute.name + 'Ctrl',
                         isFree: currentRoute.isFree
                     });
 
