@@ -1,0 +1,27 @@
+
+$inkGrey: #f0f1f1;
+
+$inkGrey2: #bbbdc0;
+
+$placeholder: #6c6d70;
+
+$red: #cfa100;
+
+$red-error:rgb(165,0,0);
+
+@mixin back-red{
+    background-color: $red;
+    color:white;
+}
+.back-red{
+    @include back-red;
+    @include transition(opacity,.7s);
+    opacity: 1;
+}
+.back-red:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+.back-red:active{
+    opacity: 0.9;
+}

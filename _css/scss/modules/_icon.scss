@@ -1,0 +1,58 @@
+@mixin backgroundIcon($url,$width,$height,$rapp){
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-size:ceil($width * $rapp) ceil($height * $rapp);
+    height: ceil($height * $rapp) + 1;
+    width: ceil($width * $rapp) + 1;
+}
+@media only screen and (min-width: 769px){
+    *[class*="icon"]{
+        opacity: 1;
+        @include transition(opacity,0.7s);
+    }
+    *[class*="icon"]:hover{
+        opacity: 0.6;
+    }                       
+}
+.icon-bar{
+    background-image: url("assets/arrow-01.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 45px;
+}
+.icon-twitter-share{
+    display: inline-block;
+    @include backgroundIcon("assets/twit.png",41px,41px,1);
+}
+.icon-facebook-share{
+    display: inline-block;
+    @include backgroundIcon("assets/fb.png",41px,41px,1);
+}
+.icon-email-share{
+    display: inline-block;
+    @include backgroundIcon("assets/email-1.png",41px,41px,1);
+}
+.icon-phone{
+    display: inline-block;
+    @include backgroundIcon("assets/phone.png",(98/64) * 74px,74px,1);
+}
+.icon-mail{
+    display: inline-block;
+    @include backgroundIcon("assets/email.png",100px,74px,1); 
+}
+.icon-search{
+    display: inline-block;
+    @include backgroundIcon("assets/search.png",26px,27px,1);  
+}
+.icon-next{
+    display: inline-block;
+    @include backgroundIcon("assets/rt_arrow.png",10px,17px,1); 
+}
+.icon-previous{
+    display: inline-block;
+    @include backgroundIcon("assets/left_arrow.png",10px,17px,1); 
+}
+.icon-share{
+    display: inline-block;
+    @include backgroundIcon("assets/share.png",18px,18px,1); 
+}

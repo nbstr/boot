@@ -1,0 +1,234 @@
+// DROP BOX-SIZING
+@mixin box-sizing(){
+    *,*:after,*:before{
+        box-sizing:border-box;
+        -moz-box-sizing:border-box;
+    }
+}
+// DOC: @include box-sizing();
+
+// USER SELECT
+@mixin user-select(){
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:default;
+}
+// DOC: @include user-select();
+
+// COLOR PLACEHOLDER
+@mixin color-placeholder($color:#000){
+    ::-webkit-input-placeholder{color:$color;}
+    :-moz-placeholder{color:$color;}
+    ::-moz-placeholder{color:$color;}
+    :-ms-input-placeholder{color:$color;}
+}
+// DOC: @include color-placeholder($color:#000);
+
+/*Create placeholder IMG for wireframe*/
+
+@mixin placeholderImg($width,$height,$radius,$nameImg,$extension,$bgSize){
+     
+     width: $width;
+     height: $height;
+     background-color: black;
+     background:url("../images/#{$nameImg}.#{$extension}") no-repeat;
+     border-radius: $radius;
+     background-position: center center;
+     background-size: $bgSize; /*cover, contains*/
+     margin: 0 auto; 
+};
+
+/*BACKGROUND-IMG INSIDE WRAPPER'S MIXIN*/
+
+@mixin addBackImg($nameImg,$extension,$bgSize,$bgColor:grey){
+     background-color:$bgColor;
+     background:url("../images/#{$nameImg}.#{$extension}") no-repeat;
+     background-size:$bgSize;
+};
+
+/*SHADOWS APPLIED INSIDE FOR EACH BACKGROUND IMAGE*/
+
+$shadows : 0 100px 20px -100px rgba(0,0,0,0.7) inset, 0 -100px 20px -100px rgba(0,0,0,0.7) inset;
+
+@mixin TopBottomInnerShadow($params){
+     box-shadow: $params;
+}
+
+
+/*SHADOWS FOR CIRCLES IMAGES*/
+
+@mixin dropShadowCircles($hOfsset,$vOfsset,$blur,$spread,$color){
+     // box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.2);
+     box-shadow: $hOfsset $vOfsset $blur $spread $color;
+}
+
+
+@mixin webkit-box($line){
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-orient: vertical;
+    overflow:hidden;
+    -webkit-line-clamp: $line;
+
+}
+@mixin inline{
+    display: inline-block;
+    vertical-align: top;
+}
+@mixin inline-bottom{
+    display: inline-block;
+    vertical-align: bottom;
+}
+@mixin absoluteFill{
+    position:absolute;left:0px;right:0px;top:0px;bottom:0px;
+    width:100%;height:100%;
+    /* edit: added z-index */
+    z-index: 1;
+
+    /* edit: fixes overlap error in IE7/8, 
+     make sure you have an empty gif */
+   // background-image: url('../img/empty.gif');
+}
+@mixin box-shadow($left,$bottom,$spread,$thickness,$opacity){
+    box-shadow:$left $bottom $spread $thickness rgba(0,0,0,$opacity);
+    -webkit-box-shadow: $left $bottom $spread $thickness rgba(0,0,0,$opacity);
+}
+@mixin box-shadow-white($left,$bottom,$spread,$thickness,$opacity){
+    box-shadow:$left $bottom $spread $thickness rgba(255,255,255,$opacity);
+    -webkit-box-shadow: $left $bottom $spread $thickness rgba(255,255,255,$opacity);
+}
+@mixin line-height($size){
+    line-height:$size;
+    @media only screen and (max-width: 768px){
+        line-height:($size - 2);
+    }
+    @media only screen and (max-width: 480px){
+        line-height:($size - 4);
+    }
+    
+}
+@mixin height($line-height,$times){
+    height: $times * $line-height;
+    @media only screen and (max-width: 768px){
+            height: $times * ($line-height - 2);
+
+    }
+    @media only screen and (max-width: 480px){
+        height: $times * ($line-height - 4);
+    }
+    
+}
+@mixin line-height-2($size,$rapp){
+    line-height:$size;
+    @media only screen and (max-width: 768px){
+        line-height:($size - (2 * $rapp));
+    }
+    @media only screen and (max-width: 480px){
+        line-height:($size - (4 * $rapp));
+    }
+    
+}
+@mixin font-size($size){
+    font-size:$size;
+    @media only screen and (max-width: 768px){
+        font-size:($size - 2);
+    }
+    @media only screen and (max-width: 480px){
+        font-size:($size - 4);
+    }
+    
+}
+@mixin font-size-2($size,$rapp){
+    font-size:$size;
+    @media only screen and (max-width: 768px){
+        font-size:($size - (2 * $rapp));
+    }
+    @media only screen and (max-width: 480px){
+        font-size:($size - (4 * $rapp));
+    }
+    
+}
+@mixin transition-effect-delay($property,$duration,$function,$delay){
+    transition: $property $duration $function $delay;
+    -webkit-transition: $property $duration $function $delay;
+    -moz-transition: $property $duration $function $delay;
+}
+@mixin transition-effect($property,$duration,$function){
+    transition: $property $duration $function;
+    -webkit-transition: $property $duration $function;
+    -moz-transition: $property $duration $function;
+}
+@mixin transition($property,$duration){
+    transition: $property $duration;
+    -webkit-transition: $property $duration;
+    -moz-transition: $property $duration;
+}
+@mixin arrow($direction, $color, $size){
+    display: block;
+    height: 0;
+    width: 0;
+    
+    @if $direction == 'top' {
+        border-left: $size solid transparent;
+    	border-right: $size solid transparent;
+    	border-bottom: $size solid $color;
+    } @else if $direction == 'right' {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+    	border-left: $size solid $color;
+    } @else if $direction == 'bottom' {
+        border-top: $size solid $color;
+        border-right: $size solid transparent;
+        border-left: $size solid transparent;
+    } @else if $direction == 'left' {
+        border-top: $size solid transparent;
+    	border-right: $size solid $color;
+    	border-bottom: $size solid transparent;
+    } @else if $direction == 'top-left' {
+        border-top: $size solid $color; 
+        border-right: $size solid transparent;	
+    } @else if $direction == 'top-right' {
+        border-top: $size solid $color; 
+        border-left: $size solid transparent;
+    } @else if $direction == 'bottom-left' {
+        border-bottom: $size solid $color; 
+        border-right: $size solid transparent;	
+    } @else if $direction == 'bottom-right' {
+        border-bottom: $size solid $color; 
+        border-left: $size solid transparent;
+    }
+}
+@mixin border-box{
+    -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+@mixin border-radius($radius:100%){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin bck() {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    .msk {
+        background-color: black;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        //@include transition(opacity,.7s)
+
+    }
+    .msk:hover {
+        //opacity:0.5;
+        width: 100%;
+        height: 100%;
+    }
+}

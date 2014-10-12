@@ -1,0 +1,102 @@
+/*---------------------------------------------------------------------------
+| MENU.
+---------------------------------------------------------------------------*/
+$lsd_menu_dx: 60px;
+
+.lsd-menu{
+	position: fixed;
+	width: $lsd_menu_dx;
+	height:100%;
+	overflow: auto;
+	background-color: #384047;
+	.content{
+		width: 100%;
+		hr {
+			border: 0.5px solid #2D3339;
+		}
+		ul{
+			list-style: none;
+			margin: 0;padding: 0;
+			li{
+				text-align:center;
+				margin-top: 20px;
+				img{
+					border: none;
+					width:30px;
+					height:30px;
+					cursor: pointer;
+					background-color: #60676D;
+				}
+			}
+		}
+	}
+}
+/*---------------------------------------------------------------------------
+| BLOCK.
+---------------------------------------------------------------------------*/
+.lsd-screen{
+	position: absolute;
+	margin-left:$lsd_menu_dx;
+	height: 100%;
+	display: block;
+	top:0;left:0;right:0;bottom:0;
+	.lsd-block {
+		@include user-select();
+		position: absolute;
+		.lsd-table {
+
+			ul {
+				@include list();
+				margin:0;
+				border-top-left-radius: 0px;
+				border-top-right-radius: 0px;
+				z-index: 1;
+				li span i{
+					display: inline-block;
+					width: 10px;
+					height: 10px;
+					cursor: pointer;
+					background-position: center;
+					background-size: 50%;
+					// background-color: #86D89E;
+					float: right;
+					@include border-radius ();
+				}
+			}
+
+			ul.title {
+				border-top: 2px solid;
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+				border-bottom-left-radius: 0px;
+				border-bottom-right-radius: 0px;
+			}
+
+			.lsd-tools {
+				position: absolute;
+				top: 10px;
+				right: 10px;
+				z-index: 2;
+
+				i {
+					display: inline-block;
+
+					width: 10px;
+					height: 10px;
+
+					cursor: pointer;
+
+					background-position: center;
+					background-size: 50%;
+
+					@include border-radius ();
+				}
+				i.lsd-handle {background-color: #41AED0;}
+				i.lsd-delete {background-color: #EB5B5D;}
+				i.lsd-restore {background-color: #86D89E;}
+			}
+
+			
+		}
+	}
+}
